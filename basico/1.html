@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Basico</title>
+  <link rel="stylesheet" href="/css/style-1.css" />
+  <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="32x32">
+  <!-- Desarrollado por Jesus Burgos, Miguel Ortiz y Luis Carrero-->
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="/img/logo.png" alt="Logo" width="40" height="40">
+      <span class="navbar-title">Basico</span>
+    </div>
+    <ul class="navbar-menu">
+      <li><a href="/basico.html">Loby</a></li>
+      <li><a href="/basico/1.html">JS-1</a></li>
+      <li><a href="/basico/2.html">JS-2</a></li>
+      <li><a href="/basico/3.html">JS-3</a></li>
+    </ul>
+  </nav>
+  <css-doodle style="position:fixed; inset:0; z-index:-1; pointer-events:none; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; will-change:opacity,transform;">
+    @grid: 20x1 / 50vmin; /* Menos partículas para máxima optimización */
+    :container {
+    perspective: 23vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    }
+    background: @m(
+    @r(30, 40), /* Mucho menos repeticiones */
+    radial-gradient(
+        @p(#44b900, #ff6600, #0400ff, #44b900) 15%,
+        transparent 50%
+    ) @r(100%) @r(100%) / @r(1%, 3%) @lr no-repeat
+    );
+
+    @size: 80%;
+    @place-cell: center;
+
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    animation: scale-up 15s linear infinite; /* Animación más rápida */
+    animation-delay: calc(@i * -.8s);
+
+    @keyframes scale-up {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(0);
+    }
+    10% { 
+        opacity: 1; 
+    }
+    95% {
+        transform:
+        translate3d(0, 0, @r(30vmin, 35vmin))
+        rotate(@r(-360deg, 360deg));
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(0, 0, 1vmin);
+    }
+    }
+  </css-doodle>
+
+  <div class="container">
+    <h1>Gestor de Clientes</h1>
+    <form onsubmit="registrarCliente(); return false;">
+      <input type="text" id="nombre" placeholder="Nombre" />
+      <input type="email" id="email" placeholder="Correo Electrónico" />
+      <button type="submit">Registrar</button>
+    </form>
+
+    <h2>Clientes Registrados</h2>
+    <ul id="lista-clientes"></ul>
+  </div>
+  <script src="/js/script-1.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.17.2/css-doodle.min.js"></script> 
+</body>
+</html>
